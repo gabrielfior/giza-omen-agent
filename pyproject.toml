@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "poetry-demo"
+version = "0.1.0"
+description = ""
+authors = ["Gabriel Fior <fior.gbm@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+giza-actions = {version= "^0.3.1"}
+prediction-market-agent-tooling = {git = "https://github.com/gnosis/prediction-market-agent-tooling.git", branch = "gabriel/giza-deps"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
