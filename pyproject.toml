@@ -8,7 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.11,<3.12"
 giza-actions = {version= "^0.3.1"}
-prediction-market-agent-tooling = {git = "https://github.com/gnosis/prediction-market-agent-tooling.git", branch = "gabriel/giza-deps"}
+giza-cli = "^0.15.1"
+eth-ape = "^0.7.23"
 
 
 [build-system]
