@@ -21,7 +21,6 @@ os.environ["OMEN-AGENT_PASSPHRASE"] = os.environ.get("DEV_PASSPHRASE")
 
 
 
-
 def create_agent(
     agent_id: int,  chain: str, contracts: dict, account_alias: str
 ):
