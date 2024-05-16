@@ -16,7 +16,7 @@ load_dotenv(find_dotenv())
 
 
 
-os.environ["CARBONABLE-AGENT_PASSPHRASE"] = os.environ.get("DEV_PASSPHRASE")
+os.environ["OMEN-AGENT_PASSPHRASE"] = os.environ.get("DEV_PASSPHRASE")
 
 
 
@@ -78,7 +78,7 @@ def get_pred_val(prediction: AgentResult):
 def agent_logic(
     agent_id : int,
     input1 : float,
-    account="carbonable-agent",
+    account="omen-agent",
     chain="ethereum:mainnet_fork:foundry",
 ):
     
@@ -120,7 +120,8 @@ def agent_logic(
         logger.info("Verification complete, executing contract")
 
         ## AGENT LOGIC GOES HERE
-
+        coin_flip = np.random.randint(0,1)
+        
 
 
 if __name__ == "__main__":
