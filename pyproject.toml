@@ -7,11 +7,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.12"
-giza-actions = {version= "^0.3.1"}
-giza-cli = "^0.15.1"
 eth-ape = "^0.7.23"
 prediction-market-agent-tooling = {git = "https://github.com/gnosis/prediction-market-agent-tooling.git", branch = "gabriel/giza-deps"}
 #prediction-market-agent-tooling = { version = "^0.30.0" }
+giza-sdk = "^0.1.2"
 
 
 [build-system]
