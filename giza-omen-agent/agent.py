@@ -8,6 +8,9 @@ from dotenv import find_dotenv, load_dotenv
 from giza.agents import AgentResult, GizaAgent
 from logging import getLogger
 
+from giza.agents import AgentResult, GizaAgent
+from logging import getLogger
+
 
 
 
@@ -16,6 +19,7 @@ load_dotenv(find_dotenv())
 
 
 os.environ["OMEN-AGENT_PASSPHRASE"] = os.environ.get("DEV_PASSPHRASE")
+
 
 
 
@@ -39,6 +43,7 @@ def create_agent(
 
 ## Change to reflect the input data dimensions, currently fit for dummy_model
 
+
 def predict(agent: GizaAgent, X: np.ndarray):
     """
     Predict the APR one week later.
@@ -53,6 +58,7 @@ def predict(agent: GizaAgent, X: np.ndarray):
     prediction = agent.predict(input_feed={"input": X}, verifiable=True, job_size="XL")
 
     return prediction
+
 
 
 
@@ -73,6 +79,7 @@ def get_pred_val(prediction: AgentResult):
 
 # Create Action
 
+
 def agent_logic(
     agent_id : int,
     input1 : float,
@@ -85,6 +92,7 @@ def agent_logic(
 
     # Create logger
     logger = getLogger("giza-omen-agent")
+    logger = getLogger("giza-omen-agent")
 
     # Load the addresses
     example_token = ADDRESSES["Example_Token"]
@@ -92,6 +100,7 @@ def agent_logic(
 
 
     # Load the data, this can be changed to retrieve live data
+    file_path = "model/dummy_data.npy"
     file_path = "model/dummy_data.npy"
     X = np.load(file_path)
 
