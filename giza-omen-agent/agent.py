@@ -5,10 +5,9 @@ import os
 import numpy as np
 from addresses import ADDRESSES
 from dotenv import find_dotenv, load_dotenv
-from giza_actions.action import action
-from giza_actions.agent import AgentResult, GizaAgent
-from giza_actions.task import task
-from prefect import get_run_logger
+from giza.agents import AgentResult, GizaAgent
+from logging import getLogger
+
 
 
 
@@ -22,7 +21,7 @@ os.environ["OMEN-AGENT_PASSPHRASE"] = os.environ.get("DEV_PASSPHRASE")
 
 
 
-@task(name="Create a Giza agent using Agent_ID")
+
 def create_agent(
     agent_id: int,  chain: str, contracts: dict, account_alias: str
 ):
@@ -40,7 +39,7 @@ def create_agent(
 
 
 ## Change to reflect the input data dimensions, currently fit for dummy_model
-@task(name="Run the model")
+
 def predict(agent: GizaAgent, X: np.ndarray):
     """
     Predict the APR one week later.
@@ -57,7 +56,7 @@ def predict(agent: GizaAgent, X: np.ndarray):
     return prediction
 
 
-@task(name="Verify the inference proof and return the predicted value")
+
 def get_pred_val(prediction: AgentResult):
     """
     Get the value from the prediction.
@@ -74,7 +73,7 @@ def get_pred_val(prediction: AgentResult):
 
 
 # Create Action
-@action(log_prints=True)
+
 def agent_logic(
     agent_id : int,
     input1 : float,
@@ -86,7 +85,7 @@ def agent_logic(
     os.environ["OMEN-AGENT_PASSPHRASE"] = os.environ.get("DEV_PASSPHRASE")
 
     # Create logger
-    logger = get_run_logger()
+    logger = getLogger("giza-omen-agent")
 
     # Load the addresses
     example_token = ADDRESSES["Example_Token"]
@@ -94,7 +93,7 @@ def agent_logic(
 
 
     # Load the data, this can be changed to retrieve live data
-    file_path = "model/data_array.npy"
+    file_path = "model/dummy_data.npy"
     X = np.load(file_path)
 
     # Fill this contracts dictionary with the contract addresses that our agent will interact with

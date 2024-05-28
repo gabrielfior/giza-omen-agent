@@ -7,9 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.12"
-giza-actions = {version= "^0.3.1"}
-giza-cli = "^0.15.1"
 eth-ape = "^0.7.23"
+giza-sdk = "^0.1.1"
 
 
 [build-system]
