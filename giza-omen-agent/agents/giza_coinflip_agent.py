@@ -16,7 +16,7 @@ from prediction_market_agent_tooling.deploy.agent import Answer, DeployableTrade
 from prediction_market_agent_tooling.gtypes import Probability
 from prediction_market_agent_tooling.markets.agent_market import AgentMarket
 from prediction_market_agent_tooling.markets.markets import MarketType
-import typing as t
+
 
 
 
@@ -26,18 +26,13 @@ load_dotenv(find_dotenv())
 
 
 os.environ["OMEN-AGENT_PASSPHRASE"] = os.environ.get("DEV_PASSPHRASE")
-
-
-
-
+GNOSIS_RPC_URL = os.environ.get("GNOSIS_RPC_URL")
 
 
 def create_agent(
     agent_id: int,  chain: str, contracts: dict, account_alias: str
 ):
-    """
-    Create a Giza agent
-    """
+
     agent = GizaAgent.from_id(
     id=agent_id,
     contracts=contracts,
@@ -52,11 +47,8 @@ def create_agent(
  #Altough prediction is not used, we still use the agent to do a prediction, which we append with the coinflip decision as output
 def predict(agent: GizaAgent, X: np.ndarray):
 
-    #Altough prediction is not used, we will use the agent to generate the proof
     X = X.reshape(1, 7)
     prediction = agent.predict(input_feed={"input": X}, verifiable=True, job_size="XL")
-
-
 
     decision = random.choice([True, False])
     return Answer(
@@ -92,15 +84,13 @@ def agent_logic(
 
     # Create logger
     logger = getLogger("giza-omen-agent")
-    logger = getLogger("giza-omen-agent")
 
     # Load the addresses
-    example_token = ADDRESSES["Example_Token"]
-    example_amm = ADDRESSES["Example_AMM"]
+    #example_token = ADDRESSES["Example_Token"]
+    #example_amm = ADDRESSES["Example_AMM"]
 
-
+    market = random.sample(markets, 1)
     # Load the data, this can be changed to retrieve live data
-    file_path = "model/dummy_data.npy"
     file_path = "model/dummy_data.npy"
     X = np.load(file_path)
 
@@ -127,7 +117,7 @@ def agent_logic(
         logger.info("Verification complete, executing contract")
 
         ## AGENT LOGIC GOES HERE
-        coin_flip = np.random.randint(0,1)
+        
         
 
 
